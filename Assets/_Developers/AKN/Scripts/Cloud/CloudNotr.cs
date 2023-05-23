@@ -26,6 +26,11 @@ public class CloudNotr : MonoBehaviour
         {
             bottomCollider.enabled = true;
             PlayModeManager.Instance.PlayerController.IsGrounded = true;
+
+            if (PlayModeManager.Instance.currentClouds != PlayModeManager.Instance.requiredClouds)
+            {
+                PlayModeManager.Instance.currentClouds++;
+            }
         }
     }
 
