@@ -26,14 +26,11 @@ public class PlayerController : MonoBehaviour
 
     private void HandleJump()
     {
+        if (!IsGrounded) return;
+        if (!Input.GetKeyDown(KeyCode.Space)) return;
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (IsGrounded)
-            {
-                rb.AddForce(Vector2.up * jumpAmount, ForceMode2D.Impulse);
-                animator.SetTrigger("Jump");
-            }
-        }
+        rb.AddForce(Vector2.up * jumpAmount, ForceMode2D.Impulse);
+        animator.SetTrigger("Jump");
+
     }
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,6 +11,11 @@ public class MenuManager : MonoBehaviour
         menuCanvas.SetActive(false);
         levelSelectCanvas.SetActive(true);
     }
+    public void BackButtonClicked()
+    {
+        menuCanvas.SetActive(true);
+        levelSelectCanvas.SetActive(false);
+    }
 
     public void Level1ButtonClicked()
     {
@@ -21,11 +24,11 @@ public class MenuManager : MonoBehaviour
 
     public void Level2ButtonClicked()
     {
-        //SceneManager.LoadScene("LevelTwo");
+        SceneManager.LoadScene("LevelTwo");
     }
 
     public void Level3ButtonClicked()
     {
-        //SceneManager.LoadScene("LevelThree");
+        SceneManager.LoadScene("LevelThree");
     }
 }
