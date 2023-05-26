@@ -1712,11 +1712,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8865897185109605225, guid: de4685a08570c9f4f932c1c50ff9033d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.432474
+      value: 10.26
       objectReference: {fileID: 0}
     - target: {fileID: 8865897185109605225, guid: de4685a08570c9f4f932c1c50ff9033d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.9659984
+      value: -1.42
       objectReference: {fileID: 0}
     - target: {fileID: 8865897185109605225, guid: de4685a08570c9f4f932c1c50ff9033d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1957,11 +1957,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8865897185109605225, guid: de4685a08570c9f4f932c1c50ff9033d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 111.99248
+      value: 81
       objectReference: {fileID: 0}
     - target: {fileID: 8865897185109605225, guid: de4685a08570c9f4f932c1c50ff9033d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.83599806
+      value: -8.3
       objectReference: {fileID: 0}
     - target: {fileID: 8865897185109605225, guid: de4685a08570c9f4f932c1c50ff9033d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1998,6 +1998,14 @@ PrefabInstance:
     - target: {fileID: 8865897185109605238, guid: de4685a08570c9f4f932c1c50ff9033d, type: 3}
       propertyPath: m_Name
       value: Cloud_Notr (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8865897185604218218, guid: de4685a08570c9f4f932c1c50ff9033d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 35.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8865897185604218218, guid: de4685a08570c9f4f932c1c50ff9033d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 9.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de4685a08570c9f4f932c1c50ff9033d, type: 3}
@@ -2670,11 +2678,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8865897185109605225, guid: de4685a08570c9f4f932c1c50ff9033d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 19.432474
+      value: 47.6
       objectReference: {fileID: 0}
     - target: {fileID: 8865897185109605225, guid: de4685a08570c9f4f932c1c50ff9033d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.7159986
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8865897185109605225, guid: de4685a08570c9f4f932c1c50ff9033d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4193,7 +4201,11 @@ MonoBehaviour:
   PlayerController: {fileID: 0}
   PlaySpeed: 1
   score: 0
-  tmpText: {fileID: 0}
+  requiredClouds: 10
+  currentClouds: 0
+  scoreText: {fileID: 0}
+  cloudsText: {fileID: 0}
+  nextLevelCanvas: {fileID: 0}
 --- !u!1 &1051012872858084065
 GameObject:
   m_ObjectHideFlags: 0

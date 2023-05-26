@@ -21,7 +21,7 @@ public class Death : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            SceneManager.LoadScene("MenuScene");
+            PlayModeManager.Instance.Death();
         }
     }
 }

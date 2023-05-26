@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProceduralCloudGenerator : MonoBehaviour
+public class ProceduralCloudGenerator1 : MonoBehaviour
 {
     public List<CloudNotr> PlatformPrefabs;
     public int numberOfPlatforms = 100;
@@ -27,7 +27,17 @@ public class ProceduralCloudGenerator : MonoBehaviour
             float height = Random.Range(minHeight, maxHeight);
 
             Vector3 newPlatformPosition = new Vector3(lastPlatformPosition.x + gap, lastPlatformPosition.y + height, 0);
-            Instantiate(PlatformPrefabs[Random.Range(0,PlatformPrefabs.Count)], newPlatformPosition, Quaternion.identity);
+
+            float randomValue = Random.value;
+
+            if (randomValue <= 0.9f)
+            {
+                Instantiate(PlatformPrefabs[0], newPlatformPosition, Quaternion.identity);
+            }
+            else if(randomValue <= 1.0f)
+            {
+                Instantiate(PlatformPrefabs[1], newPlatformPosition, Quaternion.identity);
+            }
 
             lastPlatformPosition = newPlatformPosition;
         }
