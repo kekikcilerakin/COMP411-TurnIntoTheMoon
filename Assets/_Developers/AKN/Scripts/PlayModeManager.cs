@@ -14,6 +14,7 @@ public class PlayModeManager : MonoBehaviour
     public PlayerController PlayerController;
 
     public float PlaySpeed = 2.0f;
+    public int energyCloudFloatSeconds = 5;
 
     public int score = 0;
     public int finalScore = 0;
@@ -53,6 +54,8 @@ public class PlayModeManager : MonoBehaviour
         {
             requiredClouds = requiredCloudsLevel3;
         }
+
+        highScore = HighScoreHolder.Instance.HighScore;
     }
 
     private void Update()
@@ -61,7 +64,7 @@ public class PlayModeManager : MonoBehaviour
             scoreText.text = score.ToString();
 
         if (cloudsText != null)
-            cloudsText.text = currentClouds + "/" + requiredClouds;
+            cloudsText.text = currentClouds.ToString();
 
         if (currentClouds == requiredClouds)
         {
@@ -79,6 +82,7 @@ public class PlayModeManager : MonoBehaviour
         if (finalScore > highScore)
         {
             highScore = finalScore;
+            HighScoreHolder.Instance.HighScore = highScore;
         }
         highScoreText.text = "Highscore: " + highScore;
     }
@@ -101,6 +105,7 @@ public class PlayModeManager : MonoBehaviour
             if (finalScore > highScore)
             {
                 highScore = finalScore;
+                HighScoreHolder.Instance.HighScore = highScore;
             }
         }
     }
@@ -113,13 +118,15 @@ public class PlayModeManager : MonoBehaviour
     public void Level2ButtonClicked()
     {
         SceneManager.LoadScene("LevelTwo");
+        HighScoreHolder.Instance.LevelTwoUnlocked = true;
     }
 
     public void Level3ButtonClicked()
     {
         Debug.Log("3");
         SceneManager.LoadScene("LevelThree");
-        
+        HighScoreHolder.Instance.LevelThreeUnlocked = true;
+
     }
 
     public void EndGameAnimation()

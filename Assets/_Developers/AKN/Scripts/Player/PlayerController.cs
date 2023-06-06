@@ -55,6 +55,33 @@ public class PlayerController : MonoBehaviour
         Invoke("FasterTime", 1.25f);
     }
 
+    public void MakeItFloat(int seconds)
+    {
+        StartCoroutine(StartCountdown(seconds));
+    }
+
+    private System.Collections.IEnumerator StartCountdown(int seconds)
+    {
+        float countdownDuration = seconds;
+        float currentTime = countdownDuration;
+
+        while (currentTime > 0)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, 20.0f);
+            
+            Debug.Log(currentTime);
+            yield return new WaitForSeconds(0.3f);
+            rb.bodyType = RigidbodyType2D.Static;
+
+            currentTime--;
+        }
+
+        Debug.Log("Countdown finished!");
+        rb.bodyType = RigidbodyType2D.Dynamic;
+        canMultipleJump = true;
+        jumpCount = 0;
+    }
+
     private void FasterTime()
     {
         PlayModeManager.Instance.PlaySpeed = 5.0f;

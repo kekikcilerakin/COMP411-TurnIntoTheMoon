@@ -11,6 +11,7 @@ public class CloudJump : CloudNotr
         PlayModeManager.Instance.PlayerController.MakeItJump();
         PlayModeManager.Instance.PlayerController.canMultipleJump = true;
         PlayModeManager.Instance.PlayerController.jumpCount = 0;
+        AudioSource.PlayClipAtPoint(sound, transform.position);
 
     }
 

@@ -5,7 +5,7 @@ using UnityEngine;
 public class ProceduralCloudGenerator1 : MonoBehaviour
 {
     public List<CloudNotr> PlatformPrefabs;
-    public int numberOfPlatforms = 100;
+    public int numberOfPlatforms = 200;
     public float minGap = 4.0f;
     public float maxGap = 6.0f;
     public float minHeight = -2.0f;

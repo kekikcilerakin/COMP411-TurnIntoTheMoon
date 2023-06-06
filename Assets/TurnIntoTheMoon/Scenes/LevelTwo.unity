@@ -656,13 +656,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerController: {fileID: 1137710543}
   PlaySpeed: 5
+  energyCloudFloatSeconds: 10
   score: 0
   finalScore: 0
   highScore: 0
   requiredClouds: 10
-  requiredCloudsLevel1: 10
-  requiredCloudsLevel2: 20
-  requiredCloudsLevel3: 30
+  requiredCloudsLevel1: 60
+  requiredCloudsLevel2: 100
+  requiredCloudsLevel3: 140
   currentClouds: 0
   scoreText: {fileID: 2911869503797959048}
   cloudsText: {fileID: 2911869503782308732}
@@ -4516,7 +4517,7 @@ Transform:
   m_GameObject: {fileID: 1985925431}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 106.1, y: -41.8, z: 0}
-  m_LocalScale: {x: 231.94, y: 9.3, z: 1}
+  m_LocalScale: {x: 1000000, y: 9.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -5563,7 +5564,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0 / x
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7504a3d33fd6f834486197f3acd48f0c, type: 2}
   m_sharedMaterial: {fileID: 8637860172527947992, guid: 7504a3d33fd6f834486197f3acd48f0c, type: 2}
@@ -5597,8 +5598,8 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -5675,7 +5676,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1729.2, y: -54.58}
+  m_AnchoredPosition: {x: 1699.4, y: -60.4}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2911869503797959048
@@ -6318,6 +6319,7 @@ GameObject:
   - component: {fileID: 2911869504210264713}
   - component: {fileID: 2911869504210264712}
   - component: {fileID: 2911869504210264715}
+  - component: {fileID: 2911869504210264716}
   m_Layer: 5
   m_Name: VolumeButton
   m_TagString: Untagged
@@ -6396,7 +6398,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -6426,7 +6428,33 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2911869504210264712}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2911869504210264716}
+        m_TargetAssemblyTypeName: VolumeButton, Assembly-CSharp
+        m_MethodName: OnVolumeClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2911869504210264716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2911869504210264709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d27b5cd528f8348408c91614b5196716, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeOnImage: {fileID: 21300000, guid: 0988a7f9d4bcc0943bca0899f1fa6e24, type: 3}
+  volumeOffImage: {fileID: 21300000, guid: 2c2464e4ea9ca944b870ccd224748ab0, type: 3}
 --- !u!1 &2911869504265028233
 GameObject:
   m_ObjectHideFlags: 0
@@ -6885,6 +6913,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 30137186, guid: 11fa8707230fc1a4e9a27427e9f427f8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 164102159361841929, guid: 11fa8707230fc1a4e9a27427e9f427f8, type: 3}
       propertyPath: m_SortingOrder
       value: -1
