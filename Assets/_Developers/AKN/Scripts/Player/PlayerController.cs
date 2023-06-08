@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,23 +12,56 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpAmount = 10.0f;
     [SerializeField] private Animator animator;
 
+    public GameObject hatOne;
+    public GameObject hatTwo;
+    public GameObject hatThree;
+
+    public GameObject EnergyBarPanel;
+    public bool isEndgame = false;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
+
+        EnergyBarPanel.GetComponent<Slider>().maxValue = PlayModeManager.Instance.energyCloudFloatSeconds;
+        EnergyBarPanel.GetComponent<Slider>().value = PlayModeManager.Instance.energyCloudFloatSeconds;
+
+        if (HighScoreHolder.Instance.hatOneEquipped)
+        {
+            hatOne.SetActive(true);
+            hatTwo.SetActive(false);
+            hatThree.SetActive(false);
+        }
+        else if (HighScoreHolder.Instance.hatTwoEquipped)
+        {
+            hatOne.SetActive(false);
+            hatTwo.SetActive(true);
+            hatThree.SetActive(false);
+        }
+        else if (HighScoreHolder.Instance.hatThreeEquipped)
+        {
+            hatOne.SetActive(false);
+            hatTwo.SetActive(false);
+            hatThree.SetActive(true);
+        }
     }
     private void Update()
     {
-        HandleMovement();
-        HandleJump();
-
-        if (canMultipleJump)
+        if (!isEndgame)
         {
-            if (jumpCount == 3)
+            HandleMovement();
+            HandleJump();
+
+            if (canMultipleJump)
             {
-                canMultipleJump = false;
+                if (jumpCount == 3)
+                {
+                    canMultipleJump = false;
+                }
             }
         }
+        
     }
 
     private void HandleMovement()
@@ -38,17 +73,30 @@ public class PlayerController : MonoBehaviour
     {
         if (IsGrounded || canMultipleJump)
         {
-            if (!Input.GetKeyDown(KeyCode.Space)) return;
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpAmount);
+                animator.SetTrigger("Jump");
+                jumpCount++;
+            }
+            else if (Input.touchCount > 0)
+            {
+                Touch touch = Input.GetTouch(0);
 
-            rb.velocity = new Vector2(rb.velocity.x, jumpAmount);
-            animator.SetTrigger("Jump");
-            jumpCount++;
-
+                if (touch.phase == TouchPhase.Began)
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, jumpAmount);
+                    animator.SetTrigger("Jump");
+                    jumpCount++;
+                }
+            }
         }
     }
 
     public void MakeItJump()
     {
+        if (isEndgame) return;
+
         rb.velocity = new Vector2(rb.velocity.x, 20.0f);
         animator.SetTrigger("Jump");
         PlayModeManager.Instance.PlaySpeed = 10.0f;
@@ -57,6 +105,9 @@ public class PlayerController : MonoBehaviour
 
     public void MakeItFloat(int seconds)
     {
+        if (isEndgame) return;
+
+        EnergyBarPanel.SetActive(true);
         StartCoroutine(StartCountdown(seconds));
     }
 
@@ -68,7 +119,7 @@ public class PlayerController : MonoBehaviour
         while (currentTime > 0)
         {
             rb.velocity = new Vector2(rb.velocity.x, 20.0f);
-            
+            EnergyBarPanel.GetComponent<Slider>().value = currentTime;
             Debug.Log(currentTime);
             yield return new WaitForSeconds(0.3f);
             rb.bodyType = RigidbodyType2D.Static;
@@ -80,10 +131,37 @@ public class PlayerController : MonoBehaviour
         rb.bodyType = RigidbodyType2D.Dynamic;
         canMultipleJump = true;
         jumpCount = 0;
+        EnergyBarPanel.SetActive(false);
     }
 
     private void FasterTime()
     {
         PlayModeManager.Instance.PlaySpeed = 5.0f;
+    }
+
+    public void EndGame()
+    {
+        isEndgame = true;
+        PlayModeManager.Instance.allCanvas.SetActive(false);
+        
+        StartCoroutine(EndGameCountdown());
+    }
+
+    private System.Collections.IEnumerator EndGameCountdown()
+    {
+        
+        float countdownDuration = 10f;
+        float currentTime = countdownDuration;
+
+        while (currentTime > 0)
+        {
+            rb.velocity = new Vector2(0, 10.0f);
+            yield return new WaitForSeconds(.1f);
+            currentTime--;
+        }
+
+        Debug.Log("Countdown finished!");
+        SceneManager.LoadScene("EndScene");
+
     }
 }

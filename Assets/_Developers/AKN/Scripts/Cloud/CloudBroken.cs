@@ -9,7 +9,8 @@ public class CloudBroken : CloudNotr
         base.OnTriggerEnter2D(collision);
 
         Debug.Log("Broken");
-        Instantiate(brokenPrefab, transform.position, Quaternion.identity);
+        Vector3 targetPos = new Vector3(transform.position.x, transform.position.y - 4.75f, transform.position.z);
+        Instantiate(brokenPrefab, targetPos, Quaternion.identity);
         GetComponentInChildren<SpriteRenderer>().enabled = false;
         AudioSource.PlayClipAtPoint(sound, transform.position);
 
@@ -19,7 +20,6 @@ public class CloudBroken : CloudNotr
     {
         base.OnTriggerExit2D(collision);
 
-        
         Destroy(gameObject);
     }
 }

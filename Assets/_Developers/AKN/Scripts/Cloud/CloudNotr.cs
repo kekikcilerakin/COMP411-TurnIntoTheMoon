@@ -12,12 +12,8 @@ public class CloudNotr : MonoBehaviour
         bottomCollider = GetComponentInChildren<CapsuleCollider2D>();
         bottomCollider.enabled = false;
 
-        float randomNumber = Random.Range(0f, 1f);
+        SpawnFood();
 
-        if (randomNumber <= 0.4f)
-        {
-            SpawnFood();
-        }
     }
 
     public virtual void OnTriggerEnter2D(Collider2D collision)
@@ -46,6 +42,13 @@ public class CloudNotr : MonoBehaviour
 
     public void SpawnFood()
     {
-        Instantiate(foodPrefab, foodSpawnPoint.position, Quaternion.identity);
+
+        float randomNumber = Random.Range(0f, 1f);
+
+        if (randomNumber <= 0.4f)
+        {
+            Instantiate(foodPrefab, foodSpawnPoint.position, Quaternion.identity);
+
+        }
     }
 }

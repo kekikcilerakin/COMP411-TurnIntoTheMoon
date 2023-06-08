@@ -77,8 +77,8 @@ MonoBehaviour:
   foodPrefab: {fileID: 7221568587274869378, guid: e5079427cb75fe9409c661bab5b45f13, type: 3}
   foodSpawnPoint: {fileID: 1139190291777592804}
   bottomCollider: {fileID: 0}
+  sound: {fileID: 8300000, guid: 6cc1bb3b8a20dad41801d2f32be5f829, type: 3}
   brokenPrefab: {fileID: 4554428722584940366, guid: 73c7d201c82ba414abaf914135524f31, type: 3}
-  sound: {fileID: 8300000, guid: 8afa507813e7373408da8f71573b2793, type: 3}
 --- !u!82 &5590005607155792427
 AudioSource:
   m_ObjectHideFlags: 0

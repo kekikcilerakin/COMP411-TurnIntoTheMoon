@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/TurnIntoTheMoon/Scenes/LevelThree.unity
     guid: 16489988a011871448f00e2cbca83667
+  - enabled: 1
+    path: Assets/TurnIntoTheMoon/Scenes/EndScene.unity
+    guid: c2203e8637812f7419131a1deeadcacd
   m_configObjects: {}

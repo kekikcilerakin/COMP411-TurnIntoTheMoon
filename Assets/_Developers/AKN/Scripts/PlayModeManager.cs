@@ -37,6 +37,12 @@ public class PlayModeManager : MonoBehaviour
     public GameObject pauseCanvas;
     public GameObject quitConfirmPanel;
     public GameObject deathCanvas;
+    public GameObject allCanvas;
+    public GameObject endAnim;
+
+
+    public AudioClip nextLevelSound;
+    public AudioClip levelFailSound;
 
     private void Start()
     {
@@ -84,11 +90,15 @@ public class PlayModeManager : MonoBehaviour
             highScore = finalScore;
             HighScoreHolder.Instance.HighScore = highScore;
         }
-        highScoreText.text = "Highscore: " + highScore;
+        highScoreText.text = highScore.ToString();
+
+        AudioSource.PlayClipAtPoint(levelFailSound, transform.position);
     }
 
     public void NextLevel()
     {
+        
+
         if (SceneManager.GetActiveScene().name == "LevelThree")
         {
             EndGameAnimation();
@@ -107,7 +117,13 @@ public class PlayModeManager : MonoBehaviour
                 highScore = finalScore;
                 HighScoreHolder.Instance.HighScore = highScore;
             }
+
+            AudioSource.PlayClipAtPoint(nextLevelSound, PlayerController.transform.position);
+            Debug.Log("123");
         }
+
+        currentClouds = currentClouds+1;
+
     }
 
     public void Level1ButtonClicked()
@@ -131,7 +147,7 @@ public class PlayModeManager : MonoBehaviour
 
     public void EndGameAnimation()
     {
-        Debug.Log("EndGame");
+        PlayerController.EndGame();
     }
 
     public void PauseButtonClicked()
@@ -162,6 +178,7 @@ public class PlayModeManager : MonoBehaviour
     public void QuitYesClicked()
     {
         SceneManager.LoadScene("MenuScene");
+        MenuManager.Instance.menuCanvas.SetActive(true);
     }
 
     public void QuitNoClicked()

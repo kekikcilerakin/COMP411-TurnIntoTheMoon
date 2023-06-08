@@ -25,4 +25,11 @@ public class HighScoreHolder : MonoBehaviour
     public bool LevelThreeUnlocked = false;
 
     public bool isTutorialDone = false;
+
+    public bool hatOneEquipped = false;
+    public bool hatTwoEquipped = false;
+    public bool hatThreeEquipped = false;
+    public GameObject playerHatOne;
+    public GameObject playerHatTwo;
+    public GameObject playerHatThree;
 }
